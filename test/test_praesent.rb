@@ -28,33 +28,26 @@ module Praesent
       assert_equal 2, slides.length
       assert_equal [1, 4], slides.map(&:transitions).map(&:length)
 
-      assert_equal <<-HTML, slides[0].transitions.last
-<h1 id="title">Title</h1>
+      assert_equal <<-MARKDOWN, slides[0].transitions.last
+# Title
 
-<pre><code class="language-ruby">def foo
+```ruby
+def foo
   puts "Hello world!"
 end
-</code></pre>
-      HTML
+```
+      MARKDOWN
 
-      assert_equal <<-HTML, slides[1].transitions.first
-<h1 id="foobar">Foobar</h1>
-      HTML
-      assert_equal <<-HTML, slides[1].transitions.last
-<h1 id="foobar">Foobar</h1>
+      assert_equal "# Foobar\n", slides[1].transitions.first
+      assert_equal <<-MARKDOWN.chomp, slides[1].transitions.last
+# Foobar
 
-<ul>
-  <li>foo</li>
-  <li>bar</li>
-  <li>baz</li>
-</ul>
-      HTML
+- foo
+- bar
+- baz
+      MARKDOWN
 
-      assert_equal <<-HTML, slides[1].notes
-<ul>
-  <li>Foo does some bar to baz.</li>
-</ul>
-      HTML
+      assert_equal "- Foo does some bar to baz.\n", slides[1].notes
     end
   end
 end

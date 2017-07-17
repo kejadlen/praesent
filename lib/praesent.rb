@@ -25,19 +25,13 @@ module Praesent
     def initialize(content:, append: nil, notes: nil)
       @content = content
       @append = append || []
-      @notes = render(notes || "")
+      @notes = notes || ""
     end
 
     def transitions
       @append.each.with_object([@content]) {|i, n|
         n << "#{n.last}\n#{i}"
-      }.map {|i| render(i) }
-    end
-
-    private
-
-    def render(content)
-      Kramdown::Document.new(content, input: :GFM, syntax_highlighter: :rouge).to_html
+      }
     end
   end
 end
