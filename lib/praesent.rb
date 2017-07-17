@@ -15,13 +15,17 @@ module Praesent
       when Hash
         content = raw.fetch("content")
         append = raw["append"]
-        Slide.new(content: content, append: append)
+        notes = raw["notes"]
+        Slide.new(content: content, append: append, notes: notes)
       end
     end
 
-    def initialize(content:, append: nil)
+    attr_reader :notes
+
+    def initialize(content:, append: nil, notes: nil)
       @content = content
       @append = append || []
+      @notes = render(notes || "")
     end
 
     def transitions

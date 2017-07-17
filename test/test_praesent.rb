@@ -21,6 +21,8 @@ module Praesent
     - "- foo"
     - "- bar"
     - "- baz"
+  notes: |
+    - Foo does some bar to baz.
       EOF
 
       assert_equal 2, slides.length
@@ -45,6 +47,12 @@ end
   <li>foo</li>
   <li>bar</li>
   <li>baz</li>
+</ul>
+      HTML
+
+      assert_equal <<-HTML, slides[1].notes
+<ul>
+  <li>Foo does some bar to baz.</li>
 </ul>
       HTML
     end
