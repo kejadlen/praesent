@@ -25,6 +25,15 @@ module Praesent
 
       assert_equal 2, slides.length
       assert_equal [1, 4], slides.map(&:transitions).map(&:length)
+
+      assert_equal <<-HTML, slides[0].transitions.last
+<h1 id="title">Title</h1>
+
+<pre><code class="language-ruby">def foo
+  puts "Hello world!"
+end
+</code></pre>
+      HTML
     end
   end
 end

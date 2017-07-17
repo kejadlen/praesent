@@ -1,5 +1,7 @@
 require "yaml"
 
+require "kramdown"
+
 module Praesent
   def self.load(yaml)
     YAML.load(yaml).map {|x| Slide.from(x) }
@@ -23,7 +25,13 @@ module Praesent
     end
 
     def transitions
-      [@content] + @append
+      ([@content] + @append).map {|x| render(x) }
+    end
+
+    private
+
+    def render(content)
+      Kramdown::Document.new(content, input: :GFM, syntax_highlighter: :rouge).to_html
     end
   end
 end
