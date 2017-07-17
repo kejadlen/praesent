@@ -34,6 +34,19 @@ module Praesent
 end
 </code></pre>
       HTML
+
+      assert_equal <<-HTML, slides[1].transitions.first
+<h1 id="foobar">Foobar</h1>
+      HTML
+      assert_equal <<-HTML, slides[1].transitions.last
+<h1 id="foobar">Foobar</h1>
+
+<ul>
+  <li>foo</li>
+  <li>bar</li>
+  <li>baz</li>
+</ul>
+      HTML
     end
   end
 end

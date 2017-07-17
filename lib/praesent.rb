@@ -25,7 +25,9 @@ module Praesent
     end
 
     def transitions
-      ([@content] + @append).map {|x| render(x) }
+      @append.each.with_object([@content]) {|i, n|
+        n << "#{n.last}\n#{i}"
+      }.map {|i| render(i) }
     end
 
     private
