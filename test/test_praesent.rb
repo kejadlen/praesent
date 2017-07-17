@@ -24,6 +24,7 @@ module Praesent
       EOF
 
       assert_equal 2, slides.length
+      assert_equal [1, 4], slides.map(&:transitions).map(&:length)
     end
   end
 end
