@@ -1,7 +1,5 @@
 require "yaml"
 
-require "kramdown"
-
 module Praesent
   def self.load(yaml)
     YAML.load(yaml).map {|x| Slide.from(x) }

@@ -4,7 +4,7 @@ require "praesent"
 
 module Praesent
   class TestPraesent < Minitest::Test
-    def test_integrations
+    def test_praesent
       slides = Praesent.load(<<-EOF)
 - |
   # Title

@@ -1,10 +1,14 @@
 source "https://rubygems.org"
 
-gem "kramdown"
+gem "sinatra"
 
 group :development do
   gem "minitest"
   gem "pry"
   gem "rake"
   gem "rerun"
+end
+
+group :test do
+  gem "rack-test"
 end
